@@ -4,11 +4,13 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name     = "xml-sax-machines"
-    gem.summary  = %Q{TODO}
-    gem.email    = "shane.hanna@gmail.com"
-    gem.homepage = "http://github.com/shanna/xml-sax-machines"
-    gem.authors  = ["Shane Hanna"]
+    gem.name        = "xml-sax-machines"
+    gem.summary     = %q{Assorted XML SAX readers, filters and writers.}
+    gem.description = %q{XML SAX Machines}
+    gem.email       = "shane.hanna@gmail.com"
+    gem.homepage    = "http://github.com/shanna/xml-sax-machines"
+    gem.authors     = ["Shane Hanna"]
+    gem.add_dependency 'nokogiri', ['~> 1.2.2']
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
