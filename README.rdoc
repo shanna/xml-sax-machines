@@ -1,6 +1,42 @@
-= xml-sax-machines
+= XML SAX Machines
 
-Description goes here.
+* http://github.com/shanna/xml-sax-machines/tree/master
+
+== Description
+
+Assorted XML SAX readers, filters and writers for nokogiri.
+
+== Dependencies
+
+Ruby::
+* nokogiri ~> 1.2.2
+
+== Install
+
+* Via git: git clone git://github.com/shanna/xml-sax-machines.git
+* Via gem: gem install shanna-xml-sax-machines -s http://gems.github.com
+
+== Filters
+
+=== XML::SAX::Filter
+Base class for creating chainable SAX filters.
+
+=== XML::SAX::Debug
+Debuging output for SAX events.
+
+=== XML::SAX::Builder
+Build in-memory document trees from SAX streams.
+
+=== XML::SAX::FragmentBuilder
+Process in-memory record based document fragments. Builds well balanced XML chunks matching an XPath into a partial
+in-memory document tree for processing by a callback block.
+
+== TODO
+
+* Pipeline and Tee filters.
+* Json reader/writer?
+* Any other Ruby parsers that can generate a SAX stream?
+* Namespace handling in XML::SAX::Builder and XML::SAX::FragmentBuilder.
 
 == Copyright
 

@@ -4,11 +4,11 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "xml-sax-machines"
-    gem.summary = %Q{TODO}
-    gem.email = "shane.hanna@gmail.com"
+    gem.name     = "xml-sax-machines"
+    gem.summary  = %Q{TODO}
+    gem.email    = "shane.hanna@gmail.com"
     gem.homepage = "http://github.com/shanna/xml-sax-machines"
-    gem.authors = [""Shane Hanna""]
+    gem.authors  = ["Shane Hanna"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
@@ -43,6 +43,5 @@ rescue LoadError
     abort "RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov"
   end
 end
-
 
 task :default => :test
