@@ -49,7 +49,13 @@ module XML
 
       def characters(string) #:nodoc:
         super
-        @context.add_child(Nokogiri::XML::Text.new(string, @document))
+        # http://nokogiri.lighthouseapp.com/projects/19607-nokogiri/tickets/68-xpath-incorrect-when-text-siblings-exist#ticket-68-1
+        sibling = @context.children.last
+        if sibling.kind_of?(Nokogiri::XML::Text)
+          sibling.content += string
+        else
+          @context.add_child(Nokogiri::XML::Text.new(string, @document))
+        end
       end
 
       def cdata_block(string) #:nodoc:
