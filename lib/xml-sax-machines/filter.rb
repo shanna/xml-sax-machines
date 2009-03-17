@@ -1,5 +1,3 @@
-require 'delegate'
-
 module XML
   module SAX
 
@@ -16,13 +14,10 @@ module XML
     #--
     # TODO:
     # * Examples.
-    # * Be explicit? My guess is method_missing in DelegateClass is slower.
-    class Filter < DelegateClass(Nokogiri::XML::SAX::Document)
+    class Filter < Nokogiri::XML::SAX::Document
 
       # The next filter in the chain.
-      def filter
-        __setobj__
-      end
+      attr_accessor :filter
 
       # New filter instance.
       #
@@ -45,9 +40,46 @@ module XML
       # TODO:
       # * Barf if the filter isn't a Nokogiri::XML::SAX::Document or XML::SAX::Filter.
       def initialize(filter = nil, options = {})
-        super filter || Nokogiri::XML::SAX::Document.new
+        @filter = filter
+      end
+
+      def cdata_block(string) #:nodoc:
+        @filter.cdata_block(string) if @filter
+      end
+
+      def characters(string) #:nodoc:
+        @filter.characters(string) if @filter
+      end
+
+      def comment(string) #:nodoc:
+        @filter.comment(string) if @filter
+      end
+
+      def end_document #:nodoc:
+        @filter.end_document if @filter
+      end
+
+      def end_element(name) #:nodoc:
+        @filter.end_element(name) if @filter
+      end
+
+      def error(string) #:nodoc:
+        @filter.error(string) if @filter
+      end
+
+      def start_document #:nodoc:
+        @filter.start_document if @filter
+      end
+
+      def start_element(name, attributes = []) #:nodoc:
+        @filter.start_element(name, attributes = []) if @filter
+      end
+
+      def warning(string) #:nodoc:
+        @filter.warning(string) if @filter
       end
 
     end # Filter
   end # SAX
 end # XML
+
