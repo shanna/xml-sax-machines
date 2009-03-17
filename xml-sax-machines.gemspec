@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{xml-sax-machines}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Shane Hanna"]
-  s.date = %q{2009-03-16}
+  s.date = %q{2009-03-17}
   s.description = %q{XML SAX Machines}
   s.email = %q{shane.hanna@gmail.com}
   s.extra_rdoc_files = ["README.rdoc", "LICENSE"]
