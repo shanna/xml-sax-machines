@@ -70,15 +70,30 @@ module XML
         path = @context.path
         if @buffer > 0 && block = @found.delete(path)
           @buffer -= 1
-          block.call(@context) # Copy @context fragment tree to actual fragment?
+          block.call(@context)
         end
         super
 
         if @buffer == 0 && !(path == '/')
-          # Unlink children if position context []
-          # @doc.at(path).children.unlink unless path == '/'
           @document.at(path).unlink
+
+          # Unlinked children are not garbage collected till the document they were created in is (I think).
+          # This hack job halves memory usage but it still grows too fast for my liking :(
+          @document = @document.dup
+          @context  = @document.at(@context.path) rescue nil
         end
+      end
+
+      def characters(string) # :nodoc:
+        @buffer > 0 ? super : (filter && filter.characters(string))
+      end
+
+      def comment(string) # :nodoc:
+        @buffer > 0 ? super : (filter && filter.comment(string))
+      end
+
+      def cdata_block(string) # :nodoc:
+        @buffer > 0 ? super : (filter && filter.cdata_block(string))
       end
 
     end # FragmentBuilder
