@@ -35,10 +35,6 @@ module XML
       def start_element(name, attributes = []) #:nodoc:
         super
 
-        # TODO: Bug in nokogiri or my code. It freaks out sometimes on fast machines if you modify the tree in other
-        # filters while its being constructed unless you garbage collect.
-        GC.start
-
         el = Nokogiri::XML::Element.new(name, @document)
         Hash[*attributes].each_pair{|k, v| el[k] = v}
         @context = @context.add_child(el)
