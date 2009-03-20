@@ -16,10 +16,18 @@ Ruby::
 * Via git: git clone git://github.com/shanna/xml-sax-machines.git
 * Via gem: gem install shanna-xml-sax-machines -s http://gems.github.com
 
-== Filters
+== Flow
 
 === XML::SAX::Filter
-Base class for creating chainable SAX filters.
+Pass through filter. Base class for creating chainable SAX filters.
+
+=== XML::SAX::Pipeline
+A linear sequence of SAX filters.
+
+== Filters
+
+=== XML::SAX::Handler
+Base class for creating chainable SAX handlers.
 
 === XML::SAX::Debug
 Debuging output for SAX events.
@@ -31,9 +39,16 @@ Build in-memory document trees from SAX streams.
 Process in-memory record based document fragments. Builds well balanced XML chunks matching an XPath into a partial
 in-memory document tree for processing by a callback block.
 
+== Recognition
+
+This library is my interpretation of patterns introduced to me through Perl's <tt>XML::SAX::Machines</tt>. All credit
+to Barrie Slaymaker and contributors.
+
+* http://search.cpan.org/dist/XML-SAX-Machines
+
 == TODO
 
-* Pipeline and Tee filters.
+* Tee filter.
 * Json reader/writer?
 * Any other Ruby parsers that can generate a SAX stream?
 * Namespace handling in XML::SAX::Builder and XML::SAX::FragmentBuilder.

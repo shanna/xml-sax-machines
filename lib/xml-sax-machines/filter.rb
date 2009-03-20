@@ -8,7 +8,13 @@ module XML
     #
     # Extend this Class rather than <tt>Nokogiri::XML::SAX::Document</tt> which acts as a final filter.
     #
+    # ==== Notes
+    # Filter chains are built in reverse by setting the filter attribute. Use <tt>XML::SAX::Pipeline</tt> to
+    # construct filter chains in a more logical order. This keeps the filter constructor clear of any prerequisite
+    # API in subclasses.
+    #
     # ==== See
+    # * XML::SAX::Pipeline
     # * Nokogiri::XML::SAX::Document
     #
     #--
@@ -16,32 +22,9 @@ module XML
     # * Examples.
     class Filter < Nokogiri::XML::SAX::Document
 
+      # Barf if the filter isn't a Nokogiri::XML::SAX::Document or XML::SAX::Filter.
       # The next filter in the chain.
       attr_accessor :filter
-
-      # New filter instance.
-      #
-      # ==== Notes
-      # Filter chains are built in reverse, the filter passed during construction is called *after* the current
-      # filter.
-      #
-      # ==== See
-      # * XML::SAX::Pipeline
-      #
-      # ==== Parameters
-      # filter<Nokogiri::XML::SAX::Document>::
-      #   Optional next <tt>XML::SAX::Filter</tt> or <tt>Nokogiri::XML::SAX::Document<tt>(final) in the chain.
-      #   By default a <tt>Nokogiri::XML::SAX::Document</tt> will be used making the chain final.
-      #
-      # options<Hash>::
-      #   Optional per-filter arguments.
-      #
-      #--
-      # TODO:
-      # * Barf if the filter isn't a Nokogiri::XML::SAX::Document or XML::SAX::Filter.
-      def initialize(filter = nil, options = {})
-        @filter = filter
-      end
 
       def cdata_block(string) #:nodoc:
         @filter.cdata_block(string) if @filter

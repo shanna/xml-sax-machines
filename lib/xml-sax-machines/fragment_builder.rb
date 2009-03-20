@@ -47,8 +47,8 @@ module XML
       # options<Hash>::
       #   {xpath<String> => &block<Proc>} pairs. The first element passed to the block will be the matching
       #   Nokogiri::XML::Node. Keep in mind the node will be unlinked after your block returns.
-      def initialize(filter = nil, options = {})
-        super(filter)
+      def initialize(options = {})
+        super()
         @find   = options
         @found  = {}
         @buffer = 0
