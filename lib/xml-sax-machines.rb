@@ -12,4 +12,4 @@ end # XML
 
 # TODO: Conditionally load some machines?
 base = File.join(File.dirname(__FILE__), 'xml-sax-machines')
-%w{filter debug builder fragment_builder}.each{|r| require File.join(base, r)}
+%w{filter pipeline debug builder fragment_builder}.each{|r| require File.join(base, r)}
