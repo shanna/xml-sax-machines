@@ -2,20 +2,20 @@
 
 Gem::Specification.new do |s|
   s.name = %q{xml-sax-machines}
-  s.version = "0.1.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Shane Hanna"]
-  s.date = %q{2009-03-17}
+  s.date = %q{2009-03-21}
   s.description = %q{XML SAX Machines}
   s.email = %q{shane.hanna@gmail.com}
   s.extra_rdoc_files = ["README.rdoc", "LICENSE"]
-  s.files = ["README.rdoc", "VERSION.yml", "lib/xml-sax-machines", "lib/xml-sax-machines/builder.rb", "lib/xml-sax-machines/debug.rb", "lib/xml-sax-machines/filter.rb", "lib/xml-sax-machines/fragment_builder.rb", "lib/xml-sax-machines.rb", "test/builder_test.rb", "test/debug_test.rb", "test/filter_test.rb", "test/fragment_builder_test.rb", "test/test_helper.rb", "LICENSE"]
+  s.files = ["VERSION.yml", "README.rdoc", "lib/xml-sax-machines", "lib/xml-sax-machines/filter.rb", "lib/xml-sax-machines/debug.rb", "lib/xml-sax-machines/pipeline.rb", "lib/xml-sax-machines/builder.rb", "lib/xml-sax-machines/fragment_builder.rb", "lib/xml-sax-machines.rb", "test/pipeline_test.rb", "test/filter_test.rb", "test/builder_test.rb", "test/test_helper.rb", "test/debug_test.rb", "test/fragment_builder_test.rb", "LICENSE"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/shanna/xml-sax-machines}
   s.rdoc_options = ["--inline-source", "--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.0}
+  s.rubygems_version = %q{1.3.1}
   s.summary = %q{Assorted XML SAX readers, filters and writers.}
 
   if s.respond_to? :specification_version then
