@@ -17,10 +17,13 @@ module XML
         comment
         end_document
         end_element
+        end_element_namespace
         error
         start_document
         start_element
+        start_element_namespace
         warning
+        xmldecl
       }.each do |method|
         define_method(method.to_sym) do |*args|
           warn "#{method}: #{args.inspect}"

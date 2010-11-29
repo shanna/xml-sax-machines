@@ -34,9 +34,8 @@ module XML
 
       def start_element(name, attributes = []) #:nodoc:
         super
-
         el = Nokogiri::XML::Element.new(name, @document)
-        Hash[*attributes].each_pair{|k, v| el[k] = v}
+        Hash[*attributes.flatten].each_pair{|k, v| el[k] = v}
         @context = @context.add_child(el)
       end
 
