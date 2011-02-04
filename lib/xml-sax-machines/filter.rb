@@ -42,8 +42,8 @@ module XML
         @filter.end_document if @filter
       end
 
-      def end_element(name) #:nodoc:
-        @filter.end_element(name) if @filter
+      def end_element_namespace(name, prefix = nil, uri = nil) #:nodoc:
+        @filter.end_element_namespace(name, prefix, uri) if @filter
       end
 
       def error(string) #:nodoc:
@@ -54,8 +54,8 @@ module XML
         @filter.start_document if @filter
       end
 
-      def start_element(name, attributes = []) #:nodoc:
-        @filter.start_element(name, attributes = []) if @filter
+      def start_element_namespace(name, attributes = [], prefix = nil, uri = nil, ns = []) #:nodoc:
+        @filter.start_element_namespace(name, attributes, prefix, uri, ns) if @filter
       end
 
       def warning(string) #:nodoc:

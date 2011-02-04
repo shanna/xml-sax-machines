@@ -16,12 +16,9 @@ module XML
         characters
         comment
         end_document
-        end_element
         end_element_namespace
         error
         start_document
-        start_element
-        start_element_namespace
         warning
         xmldecl
       }.each do |method|
@@ -29,6 +26,12 @@ module XML
           warn "#{method}: #{args.inspect}"
           super(*args)
         end
+      end
+
+      def start_element_namespace name, attributes = [], prefix = nil, uri = nil, ns = []
+        atts = attributes.map{|attribute| [[attribute.prefix, attribute.localname].compact.join(':'), attribute.value]}
+        warn "start_element_namespace: [#{name.inspect}, #{atts.inspect}, #{prefix.inspect}, #{uri.inspect}, #{ns.inspect}]"
+        super
       end
 
     end # Debug

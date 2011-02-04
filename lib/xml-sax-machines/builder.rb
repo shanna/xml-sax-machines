@@ -32,14 +32,20 @@ module XML
         @context  = @document
       end
 
-      def start_element(name, attributes = []) #:nodoc:
+      def start_element_namespace(name, attributes = [], prefix = nil, uri = nil, ns = [])
         super
-        el = Nokogiri::XML::Element.new(name, @document)
-        Hash[*attributes.flatten].each_pair{|k, v| el[k] = v}
+        el           = Nokogiri::XML::Element.new(name, @document)
+        el.namespace = el.add_namespace_definition(prefix, uri) if uri
+        ns.each{|prefix, href| el.add_namespace_definition(prefix, href)}
         @context = @context.add_child(el)
+
+        # Node needs to be added to the document so namespaces are available.
+        attributes.each{|attribute| el[[attribute.prefix, attribute.localname].compact.join(':')] = attribute.value}
       end
 
-      def end_element(name) #:nodoc:
+      #--
+      # TODO: Check namespace of context as well?
+      def end_element_namespace(name, prefix = nil, uri = nil)
         super
         raise "Unmatched closing element. Got '#{name}' but expected '#{@context.name}'" \
           unless name == @context.name

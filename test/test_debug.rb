@@ -9,16 +9,16 @@ describe 'XML::SAX::Debug event method warning' do
     assert_match regexp('end_document: []'), parse('<r/>')
   end
 
-  it 'warns #start_element' do
-    assert_match regexp('start_element: ["r", []]'), parse('<r/>')
+  it 'warns #start_element_namespace' do
+    assert_match regexp('start_element_namespace: ["r", [], nil, nil, []]'), parse('<r/>')
   end
 
   it 'warns #start_element with attributes' do
-    assert_match regexp('start_element: ["r", [["id", "1"]]]'), parse('<r id="1"/>')
+    assert_match regexp('start_element_namespace: ["r", [["id", "1"]], nil, nil, []]'), parse('<r id="1"/>')
   end
 
   it 'warns #end_element' do
-    assert_match regexp('end_element: ["r"]'), parse('<r/>')
+    assert_match regexp('end_element_namespace: ["r", nil, nil]'), parse('<r/>')
   end
 
   it 'warns #characters' do

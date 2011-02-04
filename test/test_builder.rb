@@ -40,6 +40,14 @@ describe 'Builder' do
     assert_equal 2, el.children.length
   end
 
+  it 'creates elements with namespaces' do
+    assert build('<r xmlns:bar="http://bar.local"><bar:foo/></r>').at('/r/bar:foo')
+  end
+
+  it 'create elements with namespaced attributes' do
+    assert build('<r xmlns:bar="http://bar.local"><foo bar:id="1"/></r>').at('/r/foo[@bar:id="1"]')
+  end
+
   protected
     def build(string)
       builder = XML::SAX::Builder.new

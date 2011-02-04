@@ -54,7 +54,7 @@ module XML
         @buffer = 0
       end
 
-      def start_element(name, attributes = []) #:nodoc:
+      def start_element_namespace(name, attributes = [], prefix = nil, uri = nil, ns = []) #:nodoc:
         super
         @find.each_pair do |xpath, block|
           if match = @document.at(xpath)
@@ -66,7 +66,7 @@ module XML
         end
       end
 
-      def end_element(name) #:nodoc:
+      def end_element_namespace(name, prefix = nil, uri = nil) #:nodoc:
         path = @context.path
         if @buffer > 0 && block = @found.delete(path)
           @buffer -= 1
